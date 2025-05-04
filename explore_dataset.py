@@ -2,8 +2,8 @@ import matplotlib.pyplot as plt
 import os
 from PIL import Image
 
-cat_dir = "data/training_set/training_set/cats"
-dog_dir = "data/training_set/training_set/dogs"
+cat_dir = "data/training_set/cats"
+dog_dir = "data/training_set/dogs"
 
 cat_sample = os.path.join(cat_dir, os.listdir(cat_dir)[0])
 dog_sample = os.path.join(dog_dir, os.listdir(dog_dir)[0])
