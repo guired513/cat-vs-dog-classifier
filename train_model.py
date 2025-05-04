@@ -2,6 +2,8 @@ import os
 import tensorflow as tf
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 from tensorflow.keras import layers, models
+import matplotlib.pyplot as plt
+
 
 # Set paths
 base_dir = 'data/training_set'
@@ -55,6 +57,34 @@ history = model.fit(
     epochs=10,
     validation_data=val_gen
 )
+
+# Plot training & validation accuracy and loss
+acc = history.history['accuracy']
+val_acc = history.history['val_accuracy']
+loss = history.history['loss']
+val_loss = history.history['val_loss']
+
+epochs_range = range(len(acc))
+
+plt.figure(figsize=(12, 6))
+
+# Accuracy
+plt.subplot(1, 2, 1)
+plt.plot(epochs_range, acc, label='Train Accuracy')
+plt.plot(epochs_range, val_acc, label='Val Accuracy')
+plt.legend(loc='lower right')
+plt.title('Training vs. Validation Accuracy')
+
+# Loss
+plt.subplot(1, 2, 2)
+plt.plot(epochs_range, loss, label='Train Loss')
+plt.plot(epochs_range, val_loss, label='Val Loss')
+plt.legend(loc='upper right')
+plt.title('Training vs. Validation Loss')
+
+plt.tight_layout()
+plt.show()
+
 
 # Save the model
 model.save("models/cat_dog_classifier.h5")
