@@ -3,9 +3,21 @@ from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing import image
 import numpy as np
 import os
+import gdown
 
 app = Flask(__name__)
-model = load_model("models/cat_dog_classifier.h5")
+
+model_path = "models/cat_dog_classifier.h5"
+drive_file_id = "1AMDB2uRqLr3rUsH1jOi3-ZF7Wdi-ozlY"
+
+if not os.path.exists(model_path):
+    os.makedirs("models", exist_ok=True)
+    url = f"https://drive.google.com/uc?id={drive_file_id}"
+    print("Downloading model from Google Drive...")
+    gdown.download(url, model_path, quiet=False)
+
+model = load_model(model_path)
+
 UPLOAD_FOLDER = "static/uploads"
 app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
 
