@@ -1,7 +1,8 @@
+# Ignore uploads and model files
 *.h5
 *.zip
-*.tar.gz
+venv/
+__pycache__/
 .kaggle/
 data/
-__pycache__/
-venv/
+static/uploads/
